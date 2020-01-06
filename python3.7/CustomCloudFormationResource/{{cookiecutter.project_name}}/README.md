@@ -1,9 +1,9 @@
 # {{ cookiecutter.project_name }}
 
   #Pre done for you
-  * `pip install boto3 crhelper`
+  * `pip install -r reqs_runtime.txt`
   * `pip freeze > src/requirements.txt`
-  * `pip install coverage pylint pytest pytest-cov pytest-mock python-lambda-local`
+  * `pip install -r reqs_dev.txt`
   * `pip freeze -r src/requirements.txt > src/requirements-dev.txt `
   * Template yaml presetup with best practices.
   * Unit tests and __init__.py files setup for best practices
@@ -33,7 +33,19 @@
         sam local invoke -e events/create_event.json
         sam local invoke -e events/delete_event.json
       ```
-    
+
+# Adding another package as a runtime dependency
+* `pip uninstall -r src/requirements-dev.txt -y`
+* Modify the reqs_runtime.txt file to include the additional req
+* `pip install -r reqs_runtime.txt`
+* `pip freeze > src/requirements.txt`
+* `pip install -r reqs_dev.txt`
+* `pip freeze -r src/requirements.txt > src/requirements-dev.txt`
+
+# Adding another package as a development dependency
+* Modify the reqs_dev.txt file to include the additional req
+* `pip install -r reqs_dev.txt`
+* `pip freeze -r src/requirements.txt > src/requirements-dev.txt`    
 
 ## Resources
 
