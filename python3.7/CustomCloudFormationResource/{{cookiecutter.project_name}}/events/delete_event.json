@@ -1,0 +1,10 @@
+{
+    "RequestType": "Delete",
+    "ServiceToken": "arn:aws:lambda:us-west-2:11111111:function:anyLambdaStuff",
+    "ResponseURL": "https://devnull-as-a-service.com/dev/null",
+    "StackId": "arn:aws:cloudformation:us-west-2:1111111111:stack/...",
+    "RequestId": "...",
+    "LogicalResourceId": "localexecutioncall",
+    "ResourceType": "Custom::hello_world",
+    "ResourceProperties": {}
+}
