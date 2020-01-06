@@ -1,0 +1,14 @@
+@Library('pipelinehms@master') _
+
+buildPythonCFResource(
+    [
+        version_file_to_write    :"src/{{cookiecutter.project_name}}_function/version.py",   
+        linting_directories      :["src","tests"],   
+        code_coverage_directory  :"identity_provider",
+        unit_test_directory      : "tests/unit",
+        python_environment       : "python3.7",
+        requirements_dev_path    : "src/requirements-dev.txt",
+        container_image_label    : "lin&&python",
+        pr_workflow_standard     : false
+    ]
+)
