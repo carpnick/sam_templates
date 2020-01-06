@@ -23,7 +23,7 @@
     * `pylint src/`
     * `pylint tests/`
   * Run Unit Tests with code coverage and reporting
-    * `python -m pytest  --cov-branch --cov=src/  tests/ --log-cli-level=DEBUG  --junit-xml=junit.xml  --cov-report=xml --cov-report=html:ci_coverage/`
+    * `pytest --cov-branch --cov=src/ tests/ --log-cli-level=DEBUG --junit-xml=junit.xml --cov-report=xml --cov-report=html:ci_coverage/`
   * Deactivate the virutal environment
     * `deactivate`
   * Run the SAM build
