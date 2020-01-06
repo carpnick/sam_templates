@@ -22,7 +22,7 @@
   * Run pylint
     * `pylint src/`
     * `pylint tests/`
-  * Run Unit Tests with code coverage and reporting
+  * Run Unit Tests and Integration tests with code coverage and reporting
     * `pytest --cov-branch --cov=src/ tests/ --log-cli-level=DEBUG --junit-xml=junit.xml --cov-report=xml --cov-report=html:ci_coverage/`
   * Deactivate the virutal environment
     * `deactivate`
