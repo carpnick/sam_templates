@@ -47,6 +47,22 @@
 * `pip install -r reqs_dev.txt`
 * `pip freeze -r src/requirements.txt > src/requirements-dev.txt`    
 
+# Simulated build
+* `REPONAME=test`
+* `BRANCHNAME=master`
+* `python3 -m venv virtualdir`
+* `source virtualdir/bin/activate`
+* `pip install -r src/requirements-dev.txt`
+* `pylint src/`
+* `pylint tests/`
+* `pytest --cov-branch --cov=src/ tests/unit/ --log-cli-level=DEBUG --junit-xml=junit.xml --cov-report=xml --cov-report=html:ci_coverage/`
+* `deactivate`
+* `sam build`
+* Below runs for every regional bucket we want to enable the custom resource
+* `S3_BUCKET=s3bucket-s3forcustomresources-9pmx89578k74`
+* `sam package --s3-bucket $S3_BUCKET --output-template-file BUILD_TEMPLATE.yaml`
+* `aws s3 cp ./BUILD_TEMPLATE.yaml s3://$S3_BUCKET/$REPONAME/$BRANCHNAME/1.0.0/template.yaml`
+
 ## Resources
 
 See the [AWS SAM developer guide](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html) for an introduction to SAM specification, the SAM CLI, and serverless application concepts.

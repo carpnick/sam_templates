@@ -5,16 +5,58 @@ Description: >
 
   Sample SAM Template for {{ cookiecutter.project_name }}
 
-# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
-Globals:
-  Function:
-    Timeout: 90
 
 Resources:
-  HelloWorldFunction:
+
+  #Define the function
+  #DO NOT modify CodeUri without talking to DICE team and NickC. Lots of design work around this decision
+  Function:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: src/
       Handler: {{ cookiecutter.project_name }}_function/app.lambda_handler
+      Role: !GetAtt Role.Arn
+      MemorySize:  128
+      Timeout: 90
       Runtime: python3.7
+
+  #Create log group and control retention
+  LogGroup:
+    Type: 'AWS::Logs::LogGroup'
+    Properties:
+      RetentionInDays: 30
+      LogGroupName: !Join
+        - ''
+        - - /aws/lambda/
+          - !Ref Function
+
+  #Role for the Function
+  Role:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      Path: /
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          -
+            Sid: AllowLambdaServiceToAssumeRole
+            Effect: Allow
+            Action:
+              - 'sts:AssumeRole'
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+      Policies:
+        -
+          PolicyName: All_policies
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              -
+                Effect: Allow
+                Action:
+                  - 'logs:CreateLogStream'
+                  - 'logs:PutLogEvents'
+                Resource:
+                  - '*'
 
