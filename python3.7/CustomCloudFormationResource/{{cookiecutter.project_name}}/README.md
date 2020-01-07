@@ -18,7 +18,7 @@
     * `source virtualdir/bin/activate`
   * Install dependencies for development
     * `pip install -r src/requirements-dev.txt`
-    * `pip install -r src/requirements-dev.txt --upgrade`
+    * `upgrade-requirements -r src/requirements-dev.txt . #(globally run $ pip install upgrade-requirements) `
   * Run pylint
     * `pylint src/`
     * `pylint tests/`
