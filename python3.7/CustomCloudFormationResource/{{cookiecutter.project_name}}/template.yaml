@@ -60,3 +60,11 @@ Resources:
                 Resource:
                   - '*'
 
+  # SSM Parameter store for the ARN - to be able to call it from another template
+  ARNParam:
+    Type: "AWS::SSM::Parameter"
+    Properties:
+      Name: '/hms/inf/accounts/local/cf_resource/{{ cookiecutter.project_name }}/arn'
+      Type: "String"
+      Value: !GetAtt Function.Arn
+      Description: "SSM Parameter for {{ cookiecutter.project_name }} ARN."
