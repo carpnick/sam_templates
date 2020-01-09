@@ -71,7 +71,7 @@ def handle_update(event, context):
         new_physical_resource_id = handle_create(event, context)
         return new_physical_resource_id
 
- 
+
     logger.info("Update allowed, no new resource is required, performing update")
 
     # TODO: Put in your implementation logic here for performing a resource Update. # pylint: disable=W0511
