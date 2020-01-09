@@ -12,8 +12,7 @@ Parameters:
   #Required to use your custom resource
   ARNParam:
     Type: 'AWS::SSM::Parameter::Value<String>'
-    Default: /hms/inf/accounts/local/cf_resource/{{ cookiecutter.project_name }}/arn
-
+    Default: /hms/tpm/dice/local/cf_resource/{{ cookiecutter.project_name }}/arn
 
 
 Resources:
