@@ -44,6 +44,7 @@ def handle_create(event, context):
     :return:
     """
     logger.info("Got Create")
+    new_input = InputObject(event["ResourceProperties"])
 
     ##TODO: Put in your implementation logic here to create a new resource. # pylint: disable=W0511
 
