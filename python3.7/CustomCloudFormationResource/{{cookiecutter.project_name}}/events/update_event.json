@@ -5,6 +5,8 @@
     "StackId": "arn:aws:cloudformation:us-west-2:1111111111:stack/...",
     "RequestId": "...",
     "LogicalResourceId": "localexecutioncall",
-    "ResourceType": "Custom::hello_world",
-    "ResourceProperties": {}
+    "ResourceType": "Custom::{{ cookiecutter.project_name }}",
+    "PhysicalResourceId": "",
+    "ResourceProperties": {},
+    "OldResourceProperties" : {}
 }

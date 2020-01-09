@@ -5,6 +5,7 @@ Initial file called from Cloud Formation via Lambda
 
 import logging
 from crhelper import CfnResource
+from {{cookiecutter.project_name}}_function.input import InputObject
 
 
 ##################################################################################
@@ -33,6 +34,7 @@ except Exception as exc:
 # END BOILER PLATE
 ##################################################################################
 
+
 @helper.create
 def handle_create(event, context):
     """
@@ -43,7 +45,12 @@ def handle_create(event, context):
     """
     logger.info("Got Create")
 
-    ##TODO: Put in your implementation logic here. # pylint: disable=W0511
+    ##TODO: Put in your implementation logic here to create a new resource. # pylint: disable=W0511
+
+    # Always return an ID or ARN or checksum.
+    # This return value equals the PhysicalResourceId for your resource you created
+    # return ARN_Value
+
 
 @helper.update
 def handle_update(event, context):
@@ -55,7 +62,22 @@ def handle_update(event, context):
     """
     logger.info("Got Update")
 
-    ##TODO: Put in your implementation logic here. # pylint: disable=W0511
+    new_input = InputObject(event["ResourceProperties"])
+
+    # Go review the InputObject.new_resource_required method and make sure you have filled it out
+    if InputObject.new_resource_required(InputObject(event["OldResourceProperties"]), new_input):
+
+        logger.info("Detected new resource is required, performing create instead")
+        new_physical_resource_id = handle_create(event, context)
+        return new_physical_resource_id
+
+ 
+    logger.info("Update allowed, no new resource is required, performing update")
+
+    # TODO: Put in your implementation logic here for performing a resource Update. # pylint: disable=W0511
+
+    # Return same resource id that was passed to us since we only updated it.
+    return event['PhysicalResourceId']
 
 
 @helper.delete
@@ -68,4 +90,5 @@ def handle_delete(event, context):
     """
     logger.info("Got Delete")
 
-    ##TODO: Put in your implementation logic here. # pylint: disable=W0511
+    # TODO: Put in your implementation logic here to delete the resource. # pylint: disable=W0511
+    # Do not return anything from this method.

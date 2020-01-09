@@ -1,0 +1,27 @@
+###
+# Attempts to use the Custom Cloudformation resource within a stack
+# MUST be modified for your particular custom resource
+##
+
+AWSTemplateFormatVersion: 2010-09-09
+
+Parameters:
+
+  # TODO: Add Parameters for your Custom Resource
+  
+  #Required to use your custom resource
+  ARNParam:
+    Type: 'AWS::SSM::Parameter::Value<String>'
+    Default: /hms/inf/accounts/local/cf_resource/{{ cookiecutter.project_name }}/arn
+
+
+
+Resources:
+
+  #Reference parameters for your custom resource
+  CustomResource:
+    Type: 'Custom::cf_identity_provider'
+    Properties:
+      ServiceToken: !Ref ARNParam #Required
+
+      #TODO: Put in the rest of your parameters here to test your Custom Resource

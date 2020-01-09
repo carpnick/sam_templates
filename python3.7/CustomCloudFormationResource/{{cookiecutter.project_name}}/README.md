@@ -1,6 +1,6 @@
 # {{ cookiecutter.project_name }}
 
-  #Pre done for you
+  # Pre done for you
   * `pip install -r reqs_runtime.txt`
   * `pip freeze > src/requirements.txt`
   * `pip install -r reqs_dev.txt`
@@ -8,8 +8,14 @@
   * Template yaml presetup with best practices.
   * Unit tests and __init__.py files setup for best practices
 
-  #Getting started
 
+  # Getting started
+  * Useful documents to get you started:
+    * [CF Event Definitions](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/crpg-ref-requesttypes.html)
+    * [CF Helper for Python - Simplifies the app.py code](https://github.com/aws-cloudformation/custom-resource-helper)
+    * [SAM Install](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
+    * [Importance of PhysicalResourceId in Custom Resources ](https://advancedweb.hu/how-to-use-the-physicalresourceid-for-cloudformation-custom-resources/)
+    
   * Clone Source
   * cd into directory
   * Create virtual Directory
@@ -31,11 +37,15 @@
     * `deactivate`
   * Run the SAM build
     * `sam build -u`
-  * Test and run locally with the create/delete event json - Integration testing with SAM container environment
+  * Integration Testing
+    * TODO: Look into [TaskCat](https://github.com/aws-quickstart/taskcat) for integration testing
+    * Test and run locally with the create/update/delete event json - Integration testing with SAM container environment.  You will need to update the PhysicalResourceId in the update and delete event for you to properly test your custom resource.
     * ```
         sam local invoke -e events/create_event.json
+        sam local invoke -e events/update_event.json
         sam local invoke -e events/delete_event.json
       ```
+    
 
 # Adding another package as a runtime dependency
 * `pip uninstall -r src/requirements-dev.txt -y`
