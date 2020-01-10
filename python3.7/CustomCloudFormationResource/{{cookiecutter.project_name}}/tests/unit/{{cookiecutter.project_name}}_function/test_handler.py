@@ -1,4 +1,6 @@
-""" Test class for the module {{ cookiecutter.project_name }} """
+#pylint: disable=W0212, C0413, W0612
+
+""" Tests for the module {{ cookiecutter.project_name }} """
 import logging
 import pytest # pylint: disable=W0611
 
