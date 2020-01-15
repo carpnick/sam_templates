@@ -1,5 +1,7 @@
 # {{ cookiecutter.project_name }}
 
+ See [documentation](README_CR.MD) for how to use.
+
   # Pre done for you
   * `pip install -r reqs_runtime.txt`
   * `pip freeze > src/requirements.txt`
