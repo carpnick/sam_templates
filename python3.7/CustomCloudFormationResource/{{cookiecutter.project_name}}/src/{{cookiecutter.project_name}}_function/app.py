@@ -10,7 +10,12 @@ from {{cookiecutter.project_name}}_function.input import InputObject
 
 ##################################################################################
 # START BOILER PLATE
-helper = CfnResource(json_logging=False, log_level='DEBUG', boto_level='CRITICAL')
+# Do this until this is merged: https://github.com/aws-cloudformation/custom-resource-helper/pull/28
+class MyCfnResource(CfnResource): # pylint: disable=C0115
+    def _wait_for_cwlogs(self, sleep=0):
+        return
+
+helper = MyCfnResource(json_logging=False, log_level='DEBUG', boto_level='CRITICAL')
 
 
 def lambda_handler(event, context):
