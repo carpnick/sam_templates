@@ -8,6 +8,26 @@ Description: >
 
 Resources:
 
+  # Does not change.  Always the same no matter what Backend we use - Lambda, AWS serverless, EC2, etc...
+  # This is required because once you deploy a stack with a custom resource - the ServiceToken can never change.
+  # Because this is an SNS topic that will be a hard coded name, the ARN will never change once deployed.  The
+  # lambda function can change or be deleted/recreated but the Topic will be a constant.
+  SNSTopic:
+    Type: 'AWS::SNS::Topic'
+    Properties:
+      TopicName: !Sub 'cfr-${AWS::Region}-{{ cookiecutter.project_name }}'
+
+
+  # SSM Parameter store for the ARN - to be able to call it from another template
+  ARNParam:
+    Type: "AWS::SSM::Parameter"
+    Properties:
+      Name: '/hms/tpm/dice/local/cf_resource/{{ cookiecutter.project_name }}/arn'
+      Type: "String"
+      Value: !Ref SNSTopic
+      Description: "SSM Parameter for {{ cookiecutter.project_name }} ARN."
+
+
   #Define the function
   #DO NOT modify CodeUri without talking to DICE team and NickC. Lots of design work around this decision
   Function:
@@ -19,6 +39,11 @@ Resources:
       MemorySize:  128
       Timeout: 90
       Runtime: python3.7
+      Events:             # Layer of indirection required so we can update the function without updating the ARN the CFT are pointing too...
+        SNSEvent:
+          Properties:
+            Topic: !Ref SNSTopic
+          Type: SNS
 
   #Create log group and control retention
   LogGroup:
@@ -59,12 +84,3 @@ Resources:
                   - 'logs:PutLogEvents'
                 Resource:
                   - '*'
-
-  # SSM Parameter store for the ARN - to be able to call it from another template
-  ARNParam:
-    Type: "AWS::SSM::Parameter"
-    Properties:
-      Name: '/hms/tpm/dice/local/cf_resource/{{ cookiecutter.project_name }}/arn'
-      Type: "String"
-      Value: !GetAtt Function.Arn
-      Description: "SSM Parameter for {{ cookiecutter.project_name }} ARN."

@@ -1,11 +1,22 @@
 {
-    "RequestType": "Delete",
-    "ServiceToken": "arn:aws:lambda:us-west-2:11111111:function:anyLambdaStuff",
-    "ResponseURL": "https://devnull-as-a-service.com/dev/null",
-    "StackId": "arn:aws:cloudformation:us-west-2:1111111111:stack/...",
-    "RequestId": "...",
-    "LogicalResourceId": "localexecutioncall",
-    "ResourceType": "Custom::{{ cookiecutter.project_name }}",
-    "PhysicalResourceId": "",
-    "ResourceProperties": {}
+  "Records": [
+    {
+      "EventSource": "aws:sns",
+      "EventVersion": "1.0",
+      "EventSubscriptionArn": "..",
+      "Sns": {
+        "Type": "Notification",
+        "MessageId": "..",
+        "TopicArn": "..",
+        "Subject": "AWS CloudFormation custom resource request",
+        "Message": "{\"RequestType\":\"Delete\",\"ServiceToken\":\"..\",\"ResponseURL\":\"https://devnull-as-a-service.com/dev/null\",\"StackId\":\".../...\",\"RequestId\":\"..\",\"LogicalResourceId\":\"CustResource\",\"ResourceType\":\"...\", \"PhysicalResourceId\": \"\",  \"ResourceProperties\": { \"TestParam\": \"TestParamValue\"  }  }",
+        "Timestamp": "...",
+        "SignatureVersion": "1",
+        "Signature": "..",
+        "SigningCertUrl": "..",
+        "UnsubscribeUrl": "..",
+        "MessageAttributes": {}
+      }
+    }
+  ]
 }
