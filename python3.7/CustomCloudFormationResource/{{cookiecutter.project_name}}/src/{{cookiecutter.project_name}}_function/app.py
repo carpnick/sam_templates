@@ -4,6 +4,7 @@ Initial file called from Cloud Formation via Lambda
 """
 
 import logging
+import json
 from crhelper import CfnResource
 from {{cookiecutter.project_name}}_function.input import InputObject
 
@@ -26,7 +27,9 @@ def lambda_handler(event, context):
     :param context:
     :return:
     """
-    helper(event, context)
+    assert len(event['Records']) == 1, "Got too many or too few records in the request"
+    myrequest = json.loads(event['Records'][0]['Sns']['Message'])
+    helper(myrequest, context)
 
 
 try:
@@ -98,3 +101,5 @@ def handle_delete(event, context):
 
     # TODO: Put in your implementation logic here to delete the resource. # pylint: disable=W0511
     # Do not return anything from this method.
+
+    new_input = InputObject(event["ResourceProperties"]) #pylint: disable=W0612
