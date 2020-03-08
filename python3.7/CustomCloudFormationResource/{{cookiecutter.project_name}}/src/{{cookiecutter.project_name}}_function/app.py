@@ -58,7 +58,7 @@ def handle_create(event, context):
 
     # Always return an ID or ARN or checksum.
     # This return value equals the PhysicalResourceId for your resource you created
-    # return ARN_Value
+    return new_input.arn()
 
 
 @helper.update
@@ -99,7 +99,12 @@ def handle_delete(event, context):
     """
     logger.info("Got Delete")
 
+    new_input = InputObject(event["ResourceProperties"])  # pylint: disable=W0612
+
+    # Only delete if PhysicalResourceId is something we generated
+    if event['PhysicalResourceId'] != new_input.arn():
+        logger.info("Not deleting, not our generated ID")
+        return
+
     # TODO: Put in your implementation logic here to delete the resource. # pylint: disable=W0511
     # Do not return anything from this method.
-
-    new_input = InputObject(event["ResourceProperties"]) #pylint: disable=W0612
