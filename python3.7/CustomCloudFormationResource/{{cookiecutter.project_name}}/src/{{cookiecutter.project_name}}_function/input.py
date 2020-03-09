@@ -38,7 +38,7 @@ class InputObject:
     @staticmethod
     def new_resource_required(old_input, new_input):  # pylint: disable=W0613
         """
-        Compare the old parameters to the new parameters and determine if a new resource needs to be created  
+        Compare the old parameters to the new parameters and determine if a new resource needs to be created
         for this custom resource
         :param old_input:
         :param new_input:
