@@ -16,5 +16,5 @@ Resources:
   DeployResource:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: !Sub 'https://s3.${AWS::Region}.amazonaws.com/com.elizacloud.${AWS::Region}.cfresources/CustomCFResources/Repositories/Eliza-{{ cookiecutter.project_name }}/${BranchName}/template.yaml'
+      TemplateURL: !Sub 'https://s3.${AWS::Region}.amazonaws.com/com.elizacloud.${AWS::Region}.cfresources/CustomCFResources/Development/Repositories/Eliza-{{ cookiecutter.project_name }}/${BranchName}/template.yaml'
 
