@@ -83,8 +83,10 @@ Resources:
                   - 'logs:CreateLogStream'
                   - 'logs:PutLogEvents'
                 Resource:
-                  - !Sub "${LogGroup.Arn}"
-                  - !Sub "${LogGroup.Arn}:log-stream:*"
+                  - !Sub "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/AUT-*-Function*" 
+                  - !Sub "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/AUT-*-Function*:log-stream:*"
+                  #- # BUSTED - Circ dep - !Sub "${LogGroup.Arn}"
+                  #- # BUSTED - Circ dep - !Sub "${LogGroup.Arn}:log-stream:*"
 
 
               - #For the dynamo DB locking code
