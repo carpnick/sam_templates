@@ -35,6 +35,19 @@ class InputObject:
         # TODO: AKA - if a new resource needs to be created because of the parameter, then it needs to go in here, otherwise no. # pylint: disable=W0511,  C0301
         return delimeter
 
+
+    @staticmethod
+    def params_are_invalid(parameters):
+        """Theory"""
+        try:
+            InputObject(parameters)
+            logger.info("Params are valid")
+            return False
+        except Exception: #pylint: disable=W0703
+            logger.info("Params are invalid")
+            return True
+
+
     @staticmethod
     def new_resource_required(old_input, new_input):  # pylint: disable=W0613
         """
@@ -48,7 +61,7 @@ class InputObject:
         """
         #Example Implementation
         if old_input.arn() == new_input.arn():
-            return True	            return False #Can be updated
+            return True	   #Can be updated
 
         else:
             return True # Cant be updated

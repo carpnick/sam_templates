@@ -1,0 +1,1 @@
+Put in CF Templates in here that are required for you to test your custom resource.
