@@ -19,7 +19,7 @@ Resources:
 
   #Reference parameters for your custom resource
   CustomResource:
-    Type: 'Custom::cf_identity_provider'
+    Type: 'Custom::{{ cookiecutter.project_name }}'
     Properties:
       ServiceToken: !Ref ARNParam #Required
 

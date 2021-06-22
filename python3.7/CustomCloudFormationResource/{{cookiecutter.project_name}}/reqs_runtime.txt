@@ -1,2 +1,2 @@
 boto3
-crhelper
+eliza-cf-custom-resource-common

@@ -9,7 +9,7 @@
         "MessageId": "..",
         "TopicArn": "..",
         "Subject": "AWS CloudFormation custom resource request",
-        "Message": "{\"RequestType\":\"Delete\",\"ServiceToken\":\"..\",\"ResponseURL\":\"https://devnull-as-a-service.com/dev/null\",\"StackId\":\".../...\",\"RequestId\":\"..\",\"LogicalResourceId\":\"CustResource\",\"ResourceType\":\"...\", \"PhysicalResourceId\": \"\",  \"ResourceProperties\": { \"TestParam\": \"TestParamValue\"  }  }",
+        "Message": "{\"RequestType\":\"Delete\",\"ServiceToken\":\"..\",\"ResponseURL\":\"https://devnull-as-a-service.com/dev/null\",\"StackId\":\".../...\",\"RequestId\":\"..\",\"LogicalResourceId\":\"{{ cookiecutter.project_name }}\",\"ResourceType\":\"...\", \"PhysicalResourceId\": \"\",  \"ResourceProperties\": { \"TestParam\": \"TestParamValue\"  }  }",
         "Timestamp": "...",
         "SignatureVersion": "1",
         "Signature": "..",

@@ -83,4 +83,28 @@ Resources:
                   - 'logs:CreateLogStream'
                   - 'logs:PutLogEvents'
                 Resource:
+                  - "*"
+
+
+              - #For the dynamo DB locking code
+                Effect: Allow
+                Action:
+                  - dynamodb:CreateTable
+                  - dynamodb:UpdateTimeToLive
+                  - dynamodb:PutItem
+                  - dynamodb:DeleteItem
+                  - dynamodb:GetItem
+                  - dynamodb:UpdateItem
+                  - dynamodb:UpdateTable
+                  - dynamodb:TagResource
+                  - dynamodb:DescribeTable
+                  - dynamodb:DescribeTimeToLive
+                Resource:
+                  - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/HMS_Eliza_CustomResources"
+
+              - #For the common Cross Account code.  Optional only if using the common cross-account code.
+                Effect: Allow
+                Action:
+                  - sts:GetCallerIdentity
+                Resource:
                   - '*'
