@@ -22,3 +22,5 @@ class Common:
 
         myreturn = session.client("sts").get_caller_identity()
         LOG.info(str(myreturn))
+
+        return str(myreturn)

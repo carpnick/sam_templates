@@ -1,4 +1,5 @@
-set -e
+#Uncomment this when ready to test a build
+#set -e
 
 echo "Running cfn validate: cfn validate"
 cfn validate
@@ -8,10 +9,14 @@ cfn generate
 set +e
 git diff --compact-summary --exit-code
 if [ $? -ne 0  ]; then
+  echo "---"
   echo "'cfn generate' generated some changes. Run it locally and commit changes."
   exit 1
 fi
 set -e
+
+#comment this out when ready to test a real build
+set +e
 
 echo "Running mypy: mypy src/ tests/ --ignore-missing-imports --strict"
 mypy src/ tests/ --ignore-missing-imports --strict

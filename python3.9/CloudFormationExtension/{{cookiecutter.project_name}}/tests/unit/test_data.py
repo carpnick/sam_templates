@@ -1,4 +1,4 @@
-from dotmatics_sso_groupinfo.models import ResourceModel, ResourceHandlerRequest
+from {{cookiecutter.project_name}}.models import ResourceModel, ResourceHandlerRequest
 
 GROUP_IDENTITY_STORE_ID = "d-12345"
 GROUP_NAME = "Test Group"

@@ -2,11 +2,16 @@
 
 # CookieCutter Instructions
 - First things to do
-  - `pip3 install -r reqs_runtime`
+  - `pip3 install -r reqs_runtime.txt`
   - `pip3 freeze > requirements.txt`
-  - `pip3 install -r reqs_dev`
+  - `pip3 install -r reqs_dev.txt`
   - `pip3 freeze -r requirements.txt > requirements_dev.txt`
+  - `git init`
+  - `sh _build/local_build.sh`
 - Modify `overrides.json` with sample inputs after the model is figured out
+- When ready to test a real build go to `_build/local_build.sh` and remove lines 18 and 19 - `set +e`
+- See rest of README.md for HOWTO on contract testing etc.
+- This is not meant to be fully functional on clone.  But it bootstraps many many steps out of the way Day 1.
 
 # List of Issues (Related to this Effort)
 - [Issue 1](https://github.com/aws-cloudformation/cloudformation-cli/issues/963) - Docs issue only
