@@ -1,0 +1,10 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  Try Using Extension
+Resources:
+
+  SampleEvent:
+    Type: {{cookiecutter.resource_name}}
+    Properties:
+      GroupName: "AWSAccountFactory"
+      IdentityStoreId: "d-9c67127909"

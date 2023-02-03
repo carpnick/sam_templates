@@ -1,0 +1,6 @@
+{
+
+    "resource_name": "Dotmatics::Service::HelloWorld",
+    "project_name": "{{ cookiecutter.resource_name.lower().replace('::', '_') }}",
+    "json_file_name": "{{ cookiecutter.resource_name.lower().replace('::', '-') }}"
+}
