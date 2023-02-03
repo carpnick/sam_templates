@@ -19,7 +19,7 @@ from {{cookiecutter.project_name}}.update_handler import UpdateHandler
 
 # Use this logger to forward log messages to CloudWatch Logs.
 LOG = logging.getLogger(__name__)
-TYPE_NAME = "{{cookiecutter.project_name}}"
+TYPE_NAME = "{{cookiecutter.resource_name}}"
 
 resource = Resource(TYPE_NAME, ResourceModel)
 test_entrypoint = resource.test_entrypoint
