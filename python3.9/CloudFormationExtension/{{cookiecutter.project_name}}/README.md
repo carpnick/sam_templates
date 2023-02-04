@@ -1,4 +1,4 @@
-# Dotmatics::SSO::GroupInfo
+# {{cookiecutter.resource_name}}
 
 # CookieCutter Instructions
 - First things to do
