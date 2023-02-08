@@ -85,6 +85,6 @@ class CreateHandler(BaseHandler[ResourceModel, ResourceHandlerRequest]):
 
         model = self.request.desiredResourceState
         assert model is not None
-        model.GeneratedReadOnlyId = generated_ro_id
+        model.GeneratedId = generated_ro_id
 
         self.save_model_to_callback(model)

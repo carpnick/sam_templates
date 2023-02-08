@@ -1,6 +1,7 @@
 .idea/
 *.zip
 .aws-sam/
+overrides_sensitive.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

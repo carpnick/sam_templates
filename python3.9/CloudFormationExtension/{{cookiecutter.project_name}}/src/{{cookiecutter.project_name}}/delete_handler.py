@@ -44,8 +44,10 @@ class DeleteHandler(BaseHandler[ResourceModel, ResourceHandlerRequest]):
 
         # Validates a row exists - otherwise fail out with a NotFound
         assert self.request.desiredResourceState is not None
-        identifier = self.validate_identifier(self.request.desiredResourceState.GeneratedReadOnlyId)
-        with self.delete_resource(primary_identifier=identifier):
+        identifier = self.validate_identifier(self.request.desiredResourceState.GeneratedId)
+        with self.delete_resource(primary_identifier=identifier) as DB:
+
+            DB.set_resource_deleted()
 
             # RO Resource nothing to do other than delete DB row.  That will happen automatically for us
             return self.return_success_delete_event()

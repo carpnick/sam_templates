@@ -43,16 +43,15 @@ class UpdateHandler(BaseHandler[ResourceModel, ResourceHandlerRequest]):
             cf_core_log_level=logging.DEBUG,
         )
 
-    def get_primary_identifier(self, model: Optional[ResourceModel]) -> str:
-        assert model is not None
-        return self.validate_identifier(model.GeneratedReadOnlyId)
-
     def execute(self) -> ProgressEvent:
+        desired_state = self.request.desiredResourceState
+        assert desired_state is not None
+
+        # get the primary identifier
+        primary_identifier = self.validate_identifier(desired_state.GeneratedId)
 
         # Update of resource
-        with self.update_resource(
-            primary_identifier=self.get_primary_identifier(self.request.previousResourceState)
-        ) as DB:
+        with self.update_resource(primary_identifier=primary_identifier) as DB:
 
             self._update_action_1()
 
@@ -80,7 +79,7 @@ class UpdateHandler(BaseHandler[ResourceModel, ResourceHandlerRequest]):
             GroupName=model.GroupName,
             IdentityStoreId=model.IdentityStoreId,
             GroupId=model.GroupId,
-            GeneratedReadOnlyId=self.get_primary_identifier(self.request.previousResourceState),
+            GeneratedId=self.get_primary_identifier(self.request.previousResourceState),
         )
 
         self.save_model_to_callback(new_model)
