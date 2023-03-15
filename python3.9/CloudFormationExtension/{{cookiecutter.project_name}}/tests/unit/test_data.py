@@ -5,9 +5,7 @@ GROUP_NAME = "Test Group"
 
 
 def standard_create_resource_model() -> ResourceModel:
-    return ResourceModel(
-        GroupName=GROUP_NAME, IdentityStoreId=GROUP_IDENTITY_STORE_ID, GroupId=None, GeneratedId=None
-    )
+    return ResourceModel(GroupName=GROUP_NAME, IdentityStoreId=GROUP_IDENTITY_STORE_ID, GroupId=None, GeneratedId=None)
 
 
 def standard_update_request() -> ResourceHandlerRequest:

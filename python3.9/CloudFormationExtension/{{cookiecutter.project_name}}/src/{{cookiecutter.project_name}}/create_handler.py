@@ -13,7 +13,8 @@ else:
 
 # Locals
 from .models import ResourceModel, ResourceHandlerRequest
-from .common import Common
+
+# from .common import Common
 from .read_handler import ReadHandler
 
 
@@ -44,10 +45,8 @@ class CreateHandler(BaseHandler[ResourceModel, ResourceHandlerRequest]):
         )
 
     def execute(self) -> ProgressEvent:
-
         # Creation of resource
         with self.create_resource() as DB:
-
             if self._create_action1():
                 # Get model from callback context and save to DB and return to make sure CF knows we created a resource
                 saved_model = self.get_model_from_callback()
@@ -82,7 +81,6 @@ class CreateHandler(BaseHandler[ResourceModel, ResourceHandlerRequest]):
         ).execute()
 
     def _create_action1(self) -> bool:
-
         if "_create_action1" not in self.callback_context:
             # Create Resource - hasnt been done yet
 
@@ -120,4 +118,3 @@ class CreateHandler(BaseHandler[ResourceModel, ResourceHandlerRequest]):
         else:
             # Already stabilized
             return True
-

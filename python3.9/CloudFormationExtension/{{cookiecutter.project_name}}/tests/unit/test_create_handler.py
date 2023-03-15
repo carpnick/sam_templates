@@ -1,9 +1,7 @@
-from typing import MutableMapping, Any
-
-from {{cookiecutter.project_name}}.create_handler import CreateHandler
-from {{cookiecutter.project_name}}.handlers import TYPE_NAME
+# from typing import MutableMapping, Any
+# from {{cookiecutter.project_name}}.create_handler import CreateHandler
+# from {{cookiecutter.project_name}}.handlers import TYPE_NAME
 from pytest_mock import MockFixture
-
 
 
 def test_create_fail_in_context(mocker: MockFixture) -> None:

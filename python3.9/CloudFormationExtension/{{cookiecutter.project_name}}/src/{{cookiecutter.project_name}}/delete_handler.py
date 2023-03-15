@@ -26,7 +26,6 @@ class DeleteHandler(BaseHandler[ResourceModel, ResourceHandlerRequest]):
         db_resource: DynamoDBServiceResource,
         total_timeout_in_minutes: int,
     ):
-
         LOG.info("DeleteHandler Constructor")
         assert session is not None
 
@@ -41,13 +40,11 @@ class DeleteHandler(BaseHandler[ResourceModel, ResourceHandlerRequest]):
         )
 
     def execute(self) -> ProgressEvent:
-
         # Validates a row exists - otherwise fail out with a NotFound
         assert self.request.desiredResourceState is not None
         identifier = self.validate_identifier(self.request.desiredResourceState.GeneratedId)
 
         with self.delete_resource(primary_identifier=identifier) as DB:
-
             # Use DB Model
             db_model: ResourceModel = DB.read_model(model_type=ResourceModel)
 
@@ -61,7 +58,7 @@ class DeleteHandler(BaseHandler[ResourceModel, ResourceHandlerRequest]):
                 func_list=[
                     lambda: self._stabilize_resource_deletion(),
                 ],
-                in_progress_model=self.db_model,
+                in_progress_model=db_model,
                 func_retries_sleep_time=5,
             )
             if pe is not None:
@@ -73,10 +70,8 @@ class DeleteHandler(BaseHandler[ResourceModel, ResourceHandlerRequest]):
 
             return self.return_success_delete_event()
 
-
     def _delete_resource(self) -> bool:
         if "_delete_resource" not in self.callback_context:
-
             # TODO: Code to delete the resource
 
             self.callback_context["_delete_resource"] = True
@@ -87,7 +82,6 @@ class DeleteHandler(BaseHandler[ResourceModel, ResourceHandlerRequest]):
 
     def _stabilize_resource_deletion(self) -> bool:
         if "_stabilize_resource_deletion" not in self.callback_context:
-
             # TODO: Put calls in here waiting for resource to get to desired state.
 
             # If desired state reached

@@ -7,7 +7,8 @@ from cf_extension_core import BaseHandler
 
 # Locals
 from .models import ResourceModel, ResourceHandlerRequest
-from .common import Common
+
+# from .common import Common
 
 
 if TYPE_CHECKING:
@@ -28,7 +29,6 @@ class ReadHandler(BaseHandler[ResourceModel, ResourceHandlerRequest]):
         db_resource: DynamoDBServiceResource,
         total_timeout_in_minutes: int,
     ):
-
         LOG.info("ReadHandler Constructor")
         assert session is not None
 
@@ -43,12 +43,10 @@ class ReadHandler(BaseHandler[ResourceModel, ResourceHandlerRequest]):
         )
 
     def execute(self) -> ProgressEvent:
-
         # Validates a row exists - otherwise fail out with a NotFound
         assert self.request.desiredResourceState is not None
         identifier = self.validate_identifier(self.request.desiredResourceState.GeneratedId)
         with self.read_resource(primary_identifier=identifier) as DB:
-
             # No guarantee of parameters from input request - AWS Contract -
             # need to get them from our data tier instead.
             s = DB.read_model(ResourceModel)

@@ -13,7 +13,8 @@ else:
 
 # Locals
 from .models import ResourceModel, ResourceHandlerRequest
-from .common import Common
+
+# from .common import Common
 from .read_handler import ReadHandler
 
 LOG = logging.getLogger(__name__)
@@ -29,7 +30,6 @@ class UpdateHandler(BaseHandler[ResourceModel, ResourceHandlerRequest]):
         db_resource: DynamoDBServiceResource,
         total_timeout_in_minutes: int,
     ):
-
         LOG.info("UpdateHandler Constructor")
         assert session is not None
 
@@ -52,7 +52,6 @@ class UpdateHandler(BaseHandler[ResourceModel, ResourceHandlerRequest]):
 
         # Update of resource
         with self.update_resource(primary_identifier=primary_identifier) as DB:
-
             # Get naked resource identifier
             resource_identifier = CustomResourceHelpers.get_naked_resource_identifier_from_string(
                 primary_identifier=primary_identifier
@@ -95,7 +94,6 @@ class UpdateHandler(BaseHandler[ResourceModel, ResourceHandlerRequest]):
 
     def _update_action_1(self) -> None:
         if "_update_action_1" not in self.callback_context:
-
             # TODO - API Code to update the resource
             self.callback_context["_update_action_1"] = True
 
@@ -117,7 +115,6 @@ class UpdateHandler(BaseHandler[ResourceModel, ResourceHandlerRequest]):
 
     def _update_stabilization(self) -> bool:
         if "_update_stabilization" not in self.callback_context:
-
             # TODO: Put calls in here waiting for resource to get to desired state.
 
             # If desired state reached
