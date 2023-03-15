@@ -1,7 +1,6 @@
-from typing import MutableMapping, Any
-
-from {{cookiecutter.project_name}}.update_handler import UpdateHandler
-from {{cookiecutter.project_name}}.handlers import TYPE_NAME
+# from typing import MutableMapping, Any
+# from {{cookiecutter.project_name}}.update_handler import UpdateHandler
+# from {{cookiecutter.project_name}}.handlers import TYPE_NAME
 from pytest_mock import MockFixture
 
 

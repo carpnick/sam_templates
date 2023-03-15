@@ -1,5 +1,8 @@
-#Uncomment this when ready to test a build
-#set -e
+set -e
+
+echo "Installing Dependencies"
+pip3 install -r requirements_dev.txt
+
 
 echo "Running cfn validate: cfn validate"
 cfn validate
@@ -21,26 +24,23 @@ if [ $? -ne 0  ]; then
 fi
 set -e
 
-#comment this out when ready to test a real build
-set +e
-
-echo "Running mypy: mypy src/ tests/ --ignore-missing-imports --strict"
-mypy src/ tests/ --ignore-missing-imports --strict
-
-echo "\nRunning Unit Tests: pytest --cov --cov-report html --cov-report xml --log-cli-level=DEBUG --junit-xml=junit.xml tests/unit"
-pytest --cov --cov-report html --cov-report xml --log-cli-level=DEBUG --junit-xml=junit.xml tests/unit
+echo "Running mypy: mypy "
+mypy
 
 echo "Running black:  black -l 120 --check --extend-exclude \".*models\.py\" src/ tests/"
 black -l 120 --check --extend-exclude ".*models\.py" src/ tests/
 
-
 echo "\nRunning flake8: flake8 --max-line-length 120 --per-file-ignores='src/**/models.py:F401,W391' src/ tests/"
 flake8 --max-line-length 120 --per-file-ignores='src/**/models.py:F401,W391' src/ tests/
+
+echo "\nRunning Unit Tests: pytest --cov --cov-report html --cov-report xml --log-cli-level=DEBUG --junit-xml=junit.xml tests/unit"
+pytest --cov --cov-report html --cov-report xml --log-cli-level=DEBUG --junit-xml=junit.xml tests/unit
 
 echo "\n Running cfn submit for build verification: cfn submit --dry-run"
 cfn submit --dry-run
 
-#For local contract testing
+#For local contract testing - Not run as part of the CI processes
+echo "\nRunning sam build to build a local copy: sam build -u -m requirements.txt"
 sam build -u -m requirements.txt
 
 echo "Build is completed"

@@ -1,8 +1,7 @@
-from typing import Optional, TYPE_CHECKING
+from typing import Optional  # , TYPE_CHECKING
 import logging
 
 from cloudformation_cli_python_lib.boto3_proxy import SessionProxy
-import cloudformation_cli_python_lib.exceptions as exceptions
 from {{cookiecutter.project_name}}.models import ResourceModel
 
 

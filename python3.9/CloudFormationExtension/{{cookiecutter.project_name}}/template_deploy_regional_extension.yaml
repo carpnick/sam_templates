@@ -16,6 +16,7 @@ Parameters:
 
   SSMPrefix:
     Type: String
+    Default: /cloud
 
 
 Resources:
