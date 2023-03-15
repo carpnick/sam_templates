@@ -53,6 +53,10 @@ class ReadHandler(BaseHandler[ResourceModel, ResourceHandlerRequest]):
             # need to get them from our data tier instead.
             s = DB.read_model(ResourceModel)
 
+            # TODO - Put in API calls to read resource based on any data needed from DB model.
+            # TODO - Fill out a new Resource Model and return, also updating DB model.
+            # TODO - If no APIs are called, no reason to update DB model and just return a portion of DB model instead.
+
             # Re-read group info based on parameters in data model from data tier (Thanks AWS)
             new_model = ResourceModel(
                 GroupName=s.GroupName,

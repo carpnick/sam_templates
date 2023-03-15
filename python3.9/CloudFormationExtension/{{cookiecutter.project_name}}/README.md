@@ -4,7 +4,7 @@
 - First things to do
   - `pip3 install -r reqs_runtime.txt`
   - `pip3 freeze > requirements.txt`
-  - `pip3 install -r reqs_dev.txt`
+  - `pip3 install -r requirements.txt -r reqs_dev.txt`
   - `pip3 freeze -r requirements.txt > requirements_dev.txt`
   - `git init`
   - `sh _build/local_build.sh`

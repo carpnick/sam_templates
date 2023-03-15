@@ -1,10 +1,17 @@
 {
   "CREATE": {
-    "/GroupName": "AWSControlTowerAdmins",
-    "/IdentityStoreId": "d-9c67127909"
+    "/GroupId": "xxxxx",
+    "/AppName": "xxxxxx",
+    "/AppRoleName": "User",
+    "/CredentialAppClientId": "xxxxxxx",
+    "/CredentialAppAPIToken": "xxxxxxxxxx",
+    "/CredentialTenantId": "xxxxxxx"
   },
   "UPDATE": {
-    "/GroupName": "AWSAccountFactory",
-    "/IdentityStoreId": "d-9c67127909"
+    "/GroupId": "xxxxxx",
+    "/AppName": "xxxxxx",
+    "/AppRoleName": "User",
+    "/CredentialAppClientId": "xxxxxxxx",
+    "/CredentialAppAPIToken": "xxxxxxx"
   }
 }
