@@ -2,6 +2,7 @@
 *.zip
 .aws-sam/
 overrides_sensitive.json
+junit.xml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
