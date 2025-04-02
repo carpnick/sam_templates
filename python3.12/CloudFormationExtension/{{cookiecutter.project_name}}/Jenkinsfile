@@ -1,0 +1,7 @@
+@Library('pipeline@master') _
+
+cf_extensions(
+    built_cf_ext_zip_name: "{{cookiecutter.json_file_name}}.zip",
+    nodeLabel: "codebuild-int-lin_amd64-small-python3-09",
+    python_command: "python3.9"
+)
