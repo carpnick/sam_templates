@@ -7,8 +7,12 @@ pip3 install -r requirements_dev.txt
 echo "Running cfn validate: cfn validate"
 cfn validate
 
-echo "Running cfn-lint: cfn-lint -t test_deploy/**/*.yaml -i E3001 E1010"
-cfn-lint -t test_deploy/**/*.yaml -i E3001 E1010
+# E3006: The validation is done against a pre-compiled spec of resources that AWS manages. We can either ignore the check, or provide our own custom spec.
+# - https://github.com/aws-cloudformation/cfn-lint/blob/74847b145d63e7038752db93efd5ef5d4f9bd75e/src/cfnlint/rules/resources/ResourceType.py#L14
+# - https://github.com/aws-cloudformation/cfn-lint/blob/v1.18.1/src/cfnlint/schema/manager.py#L274
+# - Override Spec examaple: https://github.com/aws-cloudformation/cfn-lint/issues/445
+echo "Running cfn-lint: cfn-lint -t test_deploy/**/*.yaml"
+cfn-lint -t test_deploy/**/*.yaml
 
 echo "Running cfn-lint: cfn-lint -t template_deploy_regional_extension.yaml"
 cfn-lint -t template_deploy_regional_extension.yaml

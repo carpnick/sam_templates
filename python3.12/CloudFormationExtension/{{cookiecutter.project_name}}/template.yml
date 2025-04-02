@@ -14,8 +14,6 @@ Resources:
       Handler: {{cookiecutter.project_name}}.handlers.resource
       Runtime: python3.12
       CodeUri: src/
-      Architectures:
-        - arm64
 
   TestEntrypoint:
     Type: AWS::Serverless::Function
@@ -23,7 +21,5 @@ Resources:
       Handler: {{cookiecutter.project_name}}.handlers.test_entrypoint
       Runtime: python3.12
       CodeUri: src/
-      Architectures:
-        - arm64
 
 
