@@ -1,8 +1,8 @@
 {
     "artifact_type": "RESOURCE",
     "typeName": "{{cookiecutter.resource_name}}",
-    "language": "python39",
-    "runtime": "python3.9",
+    "language": "python312",
+    "runtime": "python3.12",
     "entrypoint": "{{cookiecutter.project_name}}.handlers.resource",
     "testEntrypoint": "{{cookiecutter.project_name}}.handlers.test_entrypoint",
     "settings": {

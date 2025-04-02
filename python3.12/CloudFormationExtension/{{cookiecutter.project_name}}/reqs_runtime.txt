@@ -1,4 +1,4 @@
-cloudformation-cli-python-lib>=2.1.15
+cloudformation-cli-python-lib>=2.1.18
 boto3
 requests
 cf-extension-core==0.2.7
