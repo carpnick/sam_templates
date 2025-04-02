@@ -18,6 +18,11 @@ Parameters:
     Type: String
     Default: /cloud
 
+Metadata:
+  cfn-lint:
+    config:
+      ignore_checks:
+        - W1031 #https://github.com/aws-cloudformation/cfn-lint/issues/4061
 
 Resources:
 

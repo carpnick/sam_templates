@@ -1,6 +1,13 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: >
   Try Using Extension
+
+Metadata:
+  cfn-lint:
+    config:
+      ignore_checks:
+        - E3006
+
 Resources:
 
   SampleEvent:
